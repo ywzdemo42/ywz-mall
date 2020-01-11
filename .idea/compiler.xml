@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ywz-gateway" />
         <module name="ywz-common" />
-        <module name="ywz-item-interface" />
-        <module name="ywz-item-service" />
         <module name="ywz-registry" />
+        <module name="ywz-gateway" />
+        <module name="ywz-item-service" />
+        <module name="ywz-item-interface" />
       </profile>
     </annotationProcessing>
   </component>
