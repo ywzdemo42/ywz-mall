@@ -8,9 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ywz-common" />
         <module name="ywz-registry" />
-        <module name="ywz-gateway" />
-        <module name="ywz-item-service" />
         <module name="ywz-item-interface" />
+        <module name="ywz-item-service" />
+        <module name="ywz-gateway" />
       </profile>
     </annotationProcessing>
   </component>
