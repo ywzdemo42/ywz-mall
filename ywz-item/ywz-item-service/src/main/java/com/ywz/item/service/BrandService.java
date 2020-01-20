@@ -8,6 +8,7 @@ import com.ywz.item.pojo.Brand;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
 
@@ -41,5 +42,24 @@ public class BrandService {
         PageInfo<Brand> pageInfo = new PageInfo<>(brands);
         //包装成分页结果集
         return new PageResult<>(pageInfo.getTotal(),pageInfo.getList());
+    }
+
+    /**
+     * 新增品牌
+     * @param brand
+     * @param cids
+     * @return
+     */
+    @Transactional
+    public void saveBrand(Brand brand,List<Long> cids){
+        //先新增brand
+        int i = this.brandMapper.insertSelective(brand);
+
+
+        //再新增中间表
+        cids.forEach(cid -> {
+            this.brandMapper.insertCategoryAndBrand(cid,brand.getId());
+        });
+
     }
 }
