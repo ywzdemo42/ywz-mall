@@ -4,10 +4,10 @@ spring:
   application:
     name: item-service
   datasource:
-    username: ywz
+    username: root
     password: 123456
-    url: jdbc:mysql://47.100.216.155:3306/ywz?characterEncoding=utf-8
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.221.13:33306/ywz?characterEncoding=utf-8&serverTimezone = UTC&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
 eureka:
   client:
     service-url:
