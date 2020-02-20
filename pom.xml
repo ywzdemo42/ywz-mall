@@ -14,6 +14,7 @@
         <module>ywz-item</module>
         <module>ywz-common</module>
         <module>ywz-upload</module>
+        <module>ywz-search</module>
     </modules>
 
 

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ywz-upload" />
         <module name="ywz-gateway" />
+        <module name="ywz-search" />
         <module name="ywz-common" />
         <module name="ywz-item-interface" />
         <module name="ywz-item-service" />
@@ -24,6 +25,7 @@
       <module name="ywz-item-service" options="-parameters" />
       <module name="ywz-mall" options="-parameters" />
       <module name="ywz-registry" options="-parameters" />
+      <module name="ywz-search" options="-parameters" />
       <module name="ywz-upload" options="-parameters" />
     </option>
   </component>
