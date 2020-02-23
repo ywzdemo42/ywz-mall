@@ -15,6 +15,7 @@ zuul:
   prefix: /api
   routes:
     item-service: /item/**
+    search-service: /search/**
 ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000

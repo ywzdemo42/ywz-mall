@@ -57,7 +57,11 @@ public class GoodsController {
         return ResponseEntity.noContent().build();
     }
 
-
+    /**
+     * 根据spuI的查询spuDetail
+     * @param supId
+     * @return
+     */
     @GetMapping("spu/detail/{supId}")
     public ResponseEntity<SpuDetail> querySpuDetailBySpuId(@PathVariable("supId")Long supId){
         SpuDetail spuDetail = this.goodsService.querySpuDetailBySpuId(supId);
@@ -67,6 +71,11 @@ public class GoodsController {
         return ResponseEntity.ok(spuDetail);
     }
 
+    /**
+     * 根据spuI的查询sku几核
+     * @param id
+     * @return
+     */
     @GetMapping("sku/list")
     public ResponseEntity<List<Sku>> querySkusBySpuId(@RequestParam("id")Long id){
         List<Sku> skus = this.goodsService.querySkusBySpuId(id);

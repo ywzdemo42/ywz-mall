@@ -56,4 +56,17 @@ public class CategoryController {
         }
         return ResponseEntity.ok(category);
     }
+
+    @GetMapping
+    public ResponseEntity<List<String>> queryNamesByIds(@RequestParam("ids")List<Long> ids){
+        List<String> names = this.categoryService.queryNamesByIds(ids);
+        if (CollectionUtils.isEmpty(names)){
+            //404；资源服务器
+            //return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.notFound().build();
+        }
+
+        //200 成功
+        return  ResponseEntity.ok(names);
+    }
 }

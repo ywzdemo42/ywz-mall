@@ -19,6 +19,7 @@ public class YwzCorsConfiguration {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         //允许跨域的域名 如果携带cookie则不能写*
         corsConfiguration.addAllowedOrigin("http://manage.ywz.com");
+        corsConfiguration.addAllowedOrigin("http://www.ywz.com");
         //是否允许携带cookie
         corsConfiguration.setAllowCredentials(true);
         //头信息 允许任何头信息

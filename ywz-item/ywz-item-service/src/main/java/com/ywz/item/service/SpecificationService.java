@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SpecificatiionService {
+public class SpecificationService {
 
     @Autowired
     private SpecGroupMapper specGroupMapper;
@@ -32,6 +32,20 @@ public class SpecificatiionService {
         specParam.setSearching(searching);
         List<SpecParam> select = specParamMapper.select(specParam);
         return select;
+    }
+
+    /**
+     * 根据gid查询规格参数
+     * @param gid
+     * @return
+     */
+    public List<SpecParam> queryParams(Long gid, Long cid, Boolean generic, Boolean searching) {
+        SpecParam record = new SpecParam();
+        record.setGroupId(gid);
+        record.setCid(cid);
+        record.setGeneric(generic);
+        record.setSearching(searching);
+        return this.specParamMapper.select(record);
     }
 
 
