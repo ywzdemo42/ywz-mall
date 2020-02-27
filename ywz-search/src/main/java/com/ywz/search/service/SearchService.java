@@ -10,20 +10,27 @@ import com.ywz.search.client.GoodsClient;
 import com.ywz.search.client.SpecificationClient;
 import com.ywz.search.pojo.Goods;
 import com.ywz.search.pojo.SearchRequest;
+import com.ywz.search.pojo.SearchResult;
 import com.ywz.search.repository.GoodsRepository;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.LongTerms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
@@ -144,7 +151,7 @@ public class SearchService {
         return result;
     }
 
-    public PageResult<Goods> search(SearchRequest request) {
+    public SearchResult search(SearchRequest request) {
         if(StringUtils.isBlank(request.getKey())){
             return null;
         }
@@ -156,7 +163,53 @@ public class SearchService {
         queryBuilder.withPageable(PageRequest.of(request.getPage()-1,request.getSize()));
         //添加结果集过滤
         queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{"id","skus","subTitle"},null));
-        Page<Goods> goodsPage = this.goodsRepository.search(queryBuilder.build());
-        return new PageResult<>(goodsPage.getTotalElements(),goodsPage.getTotalPages(),goodsPage.getContent());
+
+        //添加分类和品牌的聚合
+        String categoryAggName = "categories";
+        String brandName = "brands";
+        queryBuilder.addAggregation(AggregationBuilders.terms(categoryAggName).field("cid3"));
+        queryBuilder.addAggregation(AggregationBuilders.terms(brandName).field("brandId"));
+
+        //执行查询获取结果集
+        AggregatedPage<Goods> goodsPage = (AggregatedPage<Goods>)this.goodsRepository.search(queryBuilder.build());
+        //获取聚合结果集并解析
+        List<Map<String,Object>> categorys = getCategoryAggResult(goodsPage.getAggregation(categoryAggName));
+        List<Brand> brands = getBrandAggResult(goodsPage.getAggregation(brandName));
+        return new SearchResult(goodsPage.getTotalElements(),goodsPage.getTotalPages(),goodsPage.getContent(),categorys,brands,null);
+    }
+
+    /**
+     * 解析品牌结果集
+     * @param brandAggregation
+     * @return
+     */
+    private List<Brand> getBrandAggResult(Aggregation brandAggregation) {
+        LongTerms terms = (LongTerms) brandAggregation;
+        List<Brand> brands = new ArrayList<>();
+        //获取聚合中的桶
+        terms.getBuckets().forEach(bucket -> {
+            Brand brand = this.brandClient.queryBrandById(bucket.getKeyAsNumber().longValue());
+            brands.add(brand);
+        });
+        return brands;
+    }
+
+    /**
+     * 解析分类结果集
+     * @param categoryAggregation
+     * @return
+     */
+    private List<Map<String, Object>> getCategoryAggResult(Aggregation categoryAggregation) {
+        //categoryAggregation.getMetaData().get("");
+        LongTerms terms = (LongTerms) categoryAggregation;
+        //获取桶的集合转化为List<map<string,object>>集合
+        return terms.getBuckets().stream().map(bucket -> {
+            Map<String, Object> map = new HashMap<>();
+            long l = bucket.getKeyAsNumber().longValue();
+            List<String> names = this.categoryClient.queryNamesByIds(Arrays.asList(l));
+            map.put("id",l);
+            map.put("name",names.get(0));
+            return map;
+        }).collect(Collectors.toList());
     }
 }
