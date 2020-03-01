@@ -14,12 +14,12 @@ import com.ywz.search.pojo.SearchResult;
 import com.ywz.search.repository.GoodsRepository;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
-import org.elasticsearch.index.query.Operator;
-import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.LongTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +27,7 @@ import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -158,7 +159,9 @@ public class SearchService {
         //自定义查询构建器
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         //添加查询条件
-        queryBuilder.withQuery(QueryBuilders.matchQuery("all",request.getKey()).operator(Operator.AND));
+        //QueryBuilder basicQuery = QueryBuilders.matchQuery("all", request.getKey()).operator(Operator.AND);
+        BoolQueryBuilder basicQuery = buildBoolQueryBuilder(request);
+        queryBuilder.withQuery(basicQuery);
         //添加分页
         queryBuilder.withPageable(PageRequest.of(request.getPage()-1,request.getSize()));
         //添加结果集过滤
@@ -173,9 +176,85 @@ public class SearchService {
         //执行查询获取结果集
         AggregatedPage<Goods> goodsPage = (AggregatedPage<Goods>)this.goodsRepository.search(queryBuilder.build());
         //获取聚合结果集并解析
-        List<Map<String,Object>> categorys = getCategoryAggResult(goodsPage.getAggregation(categoryAggName));
+        List<Map<String,Object>> categories = getCategoryAggResult(goodsPage.getAggregation(categoryAggName));
         List<Brand> brands = getBrandAggResult(goodsPage.getAggregation(brandName));
-        return new SearchResult(goodsPage.getTotalElements(),goodsPage.getTotalPages(),goodsPage.getContent(),categorys,brands,null);
+        //判断 是否是一个分类 只有一个分类才做规格参数的聚合
+        List<Map<String,Object>> specs = null;
+        if(!CollectionUtils.isEmpty(categories) && categories.size() == 1){
+            specs = getParamAggResult((Long)categories.get(0).get("id"),basicQuery);
+        }
+
+        return new SearchResult(goodsPage.getTotalElements(),goodsPage.getTotalPages(),goodsPage.getContent(),categories,brands,specs);
+    }
+
+    /**
+     * 构建boolean查询
+     * @param request
+     * @return
+     */
+    private BoolQueryBuilder buildBoolQueryBuilder(SearchRequest request) {
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        //给bool查询添加基本查询条件
+        boolQueryBuilder.must(QueryBuilders.matchQuery("all",request.getKey()).operator(Operator.AND));
+        //添加过滤条件
+        //获取用户选择的过滤信息
+        Map<String, Object> filter = request.getFilter();
+        for (Map.Entry<String,Object> entry : filter.entrySet()) {
+            String key = entry.getKey();
+            if(StringUtils.equals("品牌", key)){
+                key = "brandId";
+            }else if(StringUtils.equals("分类",key)){
+                key = "cid3";
+            }else {
+                key = "specs." + key + ".keywoed";
+            }
+
+            boolQueryBuilder.filter(QueryBuilders.termQuery(key,entry.getValue()));
+        }
+        return boolQueryBuilder;
+    }
+
+    /**
+     * 根据查询条件聚合规格参数
+     * @param cid
+     * @param basicQuery
+     * @return
+     */
+    private List<Map<String,Object>> getParamAggResult(Long cid,QueryBuilder basicQuery) {
+        //自定义查询构建起
+        NativeSearchQueryBuilder q = new NativeSearchQueryBuilder();
+        //添加基本查询条件
+        q.withQuery(basicQuery);
+
+        //查询要聚合的规格参数
+        List<SpecParam> params = this.specificationClient.queryParams(null, cid, null, true);
+
+        params.forEach(param -> {//添加规格参数的聚合
+            q.addAggregation(AggregationBuilders.terms(param.getName()).field("specs." + param.getName() + ".keyword"));
+        });
+        //添加结果集过滤
+        q.withSourceFilter(new FetchSourceFilter(new String[]{},null));
+        //执行聚合查询
+        AggregatedPage<Goods> goodsPage = (AggregatedPage<Goods>)this.goodsRepository.search(q.build());
+
+        List<Map<String,Object>> specs = new ArrayList<>();
+        //解析聚合结果集 key是聚合名称 value聚合对象
+        Map<String, Aggregation> aggregationMap = goodsPage.getAggregations().asMap();
+        for (Map.Entry<String, Aggregation> aggregationEntry : aggregationMap.entrySet()) {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("k",aggregationEntry.getKey());
+            //获取聚合
+            StringTerms value = (StringTerms) aggregationEntry.getValue();
+            //获取桶集合
+            List<String> options = value.getBuckets().stream().map(bucket -> {
+                String option = bucket.getKeyAsString();
+                return option;
+            }).collect(Collectors.toList());
+
+            map.put("options",options);
+            specs.add(map);
+        }
+        return specs;
     }
 
     /**

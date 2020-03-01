@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SearchResult extends PageResult<Goods> {
-    private List<Map<String,Object>> categorys;
+    private List<Map<String,Object>> categories;
     private List<Brand> brands;
     private List<Map<String,Object>> specs;
 
@@ -16,9 +16,9 @@ public class SearchResult extends PageResult<Goods> {
 
     }
 
-    public SearchResult(Long total, Integer totalPage, List<Goods> items, List<Map<String, Object>> categorys, List<Brand> brands, List<Map<String, Object>> specs) {
+    public SearchResult(Long total, Integer totalPage, List<Goods> items, List<Map<String, Object>> categories, List<Brand> brands, List<Map<String, Object>> specs) {
         super(total, totalPage, items);
-        this.categorys = categorys;
+        this.categories = categories;
         this.brands = brands;
         this.specs = specs;
     }
@@ -31,12 +31,12 @@ public class SearchResult extends PageResult<Goods> {
         this.specs = specs;
     }
 
-    public List<Map<String, Object>> getCategorys() {
-        return categorys;
+    public List<Map<String, Object>> getCategories() {
+        return categories;
     }
 
-    public void setCategorys(List<Map<String, Object>> categorys) {
-        this.categorys = categorys;
+    public void setCategories(List<Map<String, Object>> categories) {
+        this.categories = categories;
     }
 
     public List<Brand> getBrands() {

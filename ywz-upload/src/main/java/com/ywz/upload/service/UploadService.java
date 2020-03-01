@@ -46,6 +46,7 @@ public class UploadService {
             //file.transferTo(new File("D:\\FileServer\\" + originalFilename));
             String last = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
             StorePath storePath = this.storageClient.uploadFile(file.getInputStream(), file.getSize(), last, null);
+            System.err.println(storePath.getFullPath());
             //返回url进行回显
             return "http://image.ywz.com/fastdfs" + storePath.getFullPath();
         } catch (IOException e) {
