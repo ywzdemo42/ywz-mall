@@ -22,4 +22,7 @@ public interface SpecificationApi {
             @RequestParam(value = "generic", required = false)Boolean generic,
             @RequestParam(value = "searching", required = false)Boolean searching
     );
+
+    @GetMapping("group/param/{cid}")
+    public List<SpecGroup> queryGroupWithParam(@PathVariable("cid")Long cid);
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SpecificationService {
@@ -51,5 +52,14 @@ public class SpecificationService {
 
     public void saveGroup(SpecGroup specGroup){
         specGroupMapper.insertSelective(specGroup);
+    }
+
+    public List<SpecGroup> queryGroupWithParam(Long cid) {
+        List<SpecGroup> groups = this.selectGroupById(cid);
+        return groups.stream().map(group -> {
+            List<SpecParam> params = this.queryParams(group.getId(), null, null, null);
+            group.setParams(params);
+            return group;
+        }).collect(Collectors.toList());
     }
 }
