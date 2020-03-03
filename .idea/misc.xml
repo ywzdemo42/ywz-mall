@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/ywz-registry/pom.xml" />
         <option value="$PROJECT_DIR$/ywz-common/pom.xml" />
         <option value="$PROJECT_DIR$/ywz-search/pom.xml" />
+        <option value="$PROJECT_DIR$/ywz-goods-web/pom.xml" />
       </list>
     </option>
   </component>

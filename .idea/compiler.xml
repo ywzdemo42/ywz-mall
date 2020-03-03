@@ -6,14 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ywz-registry" />
         <module name="ywz-upload" />
+        <module name="ywz-goods-web" />
         <module name="ywz-gateway" />
         <module name="ywz-search" />
         <module name="ywz-common" />
         <module name="ywz-item-interface" />
         <module name="ywz-item-service" />
-        <module name="ywz-goods-web" />
+        <module name="ywz-registry" />
       </profile>
     </annotationProcessing>
   </component>

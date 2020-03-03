@@ -30,7 +30,7 @@ public class GoodsHtmlService {
 
         PrintWriter printWriter = null;
         try {
-            File file = new File("" + spuId + ".html");
+            File file = new File("D:\\MyProgramFiles\\nginx\\html\\item\\" + spuId + ".html");
             printWriter = new PrintWriter(file);
             this.engine.process("item",context, printWriter);
         } catch (FileNotFoundException e) {
