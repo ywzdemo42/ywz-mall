@@ -179,7 +179,7 @@
 					</div>
 					<div class="clearfix choose">
 						<div id="specification" class="summary-wrap clearfix">
-							<dl v-for="(val, key, index) in specialSpec">
+							<dl v-for="(val, key, index) in specialSpec" :key = "index">
 								<dt>
 									<div class="fl title">
 									<i>{{paramMap[key]}}</i>
@@ -660,7 +660,7 @@
 				ly.verify().then(res => {
 				    // 登陆状态下的购物车
 					ly.http.post("/cart", {skuId: this.sku.id, num: this.num}).then(res => {
-                        window.location = "http://www.leyou.com/cart.html";
+                        window.location = "http://www.ywz.com/cart.html";
 					});
 				}).catch(()=>{
 				    // 未登录状态的购物车
@@ -684,7 +684,7 @@
 					ly.store.set("LY_CART", carts);
 
 					// 跳转到购物车页面
-					window.location = "http://www.leyou.com/cart.html";
+					window.location = "http://www.ywz.com/cart.html";
 				})
 			},
             plus(){
