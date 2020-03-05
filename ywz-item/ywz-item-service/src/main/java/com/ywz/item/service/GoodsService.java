@@ -7,6 +7,7 @@ import com.ywz.item.bo.SpuBo;
 import com.ywz.item.mapper.*;
 import com.ywz.item.pojo.*;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,8 @@ public class GoodsService {
     private SkuMapper skuMapper;
     @Autowired
     private StockMapper stockMapper;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     public PageResult<SpuBo> querySpuByPage(String key,Boolean saleable,Integer page,Integer rows){
         //添加查询条件
@@ -86,7 +89,19 @@ public class GoodsService {
         this.spuDetailMapper.insertSelective(spuDetail);
         //新增sku
         saveSkuAndStock(spuBo);
+        //消息队列
+        sendMsg("insert", spuBo.getId());
     }
+
+    /**
+     * RabbitMQ生产者方法
+     * @param type
+     * @param spuId
+     */
+    private void sendMsg(String type,Long spuId) {
+        this.amqpTemplate.convertAndSend("item." + type, spuId);
+    }
+
 
     private void saveSkuAndStock(SpuBo spuBo) {
         spuBo.getSkus().forEach(sku -> {
