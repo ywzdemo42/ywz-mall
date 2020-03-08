@@ -6,14 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ywz-sms" />
         <module name="ywz-upload" />
         <module name="ywz-goods-web" />
         <module name="ywz-gateway" />
         <module name="ywz-search" />
+        <module name="ywz-user-service" />
         <module name="ywz-common" />
         <module name="ywz-item-interface" />
         <module name="ywz-item-service" />
         <module name="ywz-registry" />
+        <module name="ywz-user-interface" />
       </profile>
     </annotationProcessing>
   </component>
@@ -28,7 +31,11 @@
       <module name="ywz-mall" options="-parameters" />
       <module name="ywz-registry" options="-parameters" />
       <module name="ywz-search" options="-parameters" />
+      <module name="ywz-sms" options="-parameters" />
       <module name="ywz-upload" options="-parameters" />
+      <module name="ywz-user" options="-parameters" />
+      <module name="ywz-user-interface" options="-parameters" />
+      <module name="ywz-user-service" options="-parameters" />
     </option>
   </component>
 </project>

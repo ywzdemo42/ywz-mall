@@ -16,9 +16,10 @@ zuul:
   routes:
     item-service: /item/**
     search-service: /search/**
+    user-service: /user/**
 ribbon:
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
+  ConnectTimeout: 10000 #通讯超时时间
+  ReadTimeout: 10000 #获取连接超时时间
 hystrix:
   command:
     default:

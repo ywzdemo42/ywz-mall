@@ -10,6 +10,10 @@
     <file url="file://$PROJECT_DIR$/ywz-item/ywz-item-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-registry" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-sms" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-upload" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-user/ywz-user-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-user/ywz-user-service" charset="UTF-8" />
   </component>
 </project>

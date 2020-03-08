@@ -16,6 +16,8 @@
         <module>ywz-upload</module>
         <module>ywz-search</module>
         <module>ywz-goods-web</module>
+        <module>ywz-user</module>
+        <module>ywz-sms</module>
     </modules>
 
 

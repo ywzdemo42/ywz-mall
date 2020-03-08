@@ -1,0 +1,16 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: ywz-sms
+  rabbitmq:
+    username: ywz
+    password: ywz
+    host: 47.100.216.155
+    virtual-host: /ywz
+ywz:
+  sms:
+    accessKeyId: LTAI4Fk3KLicoVDPJmx5h4p5
+    accessKeySecret: XAeSL8dN3V9ngCE8X2GEnLko6AK4bU
+    signName: 稳重商城
+    verifyCodeTemplate: SMS_185230781
