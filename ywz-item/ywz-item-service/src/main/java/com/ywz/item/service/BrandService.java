@@ -2,7 +2,7 @@ package com.ywz.item.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ywz.common.PageResult;
+import com.ywz.common.pojo.PageResult;
 import com.ywz.item.mapper.BrandMapper;
 import com.ywz.item.pojo.Brand;
 import org.apache.commons.lang.StringUtils;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.util.StringUtil;
 
 import java.util.List;
 

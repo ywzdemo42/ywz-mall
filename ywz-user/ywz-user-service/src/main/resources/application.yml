@@ -8,6 +8,13 @@ spring:
     password: 123456
     url: jdbc:mysql://47.100.216.155:33306/ywz?characterEncoding=utf-8&serverTimezone = UTC&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 47.100.216.155
+  rabbitmq:
+    host: 47.100.216.155
+    username: ywz
+    password: ywz
+    virtual-host: /ywz
 eureka:
   client:
     service-url:

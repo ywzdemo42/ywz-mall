@@ -1,12 +1,11 @@
 package com.ywz.item.controller;
 
-import com.ywz.common.PageResult;
+import com.ywz.common.pojo.PageResult;
 import com.ywz.item.bo.SpuBo;
 import com.ywz.item.pojo.Sku;
 import com.ywz.item.pojo.Spu;
 import com.ywz.item.pojo.SpuDetail;
 import com.ywz.item.service.GoodsService;
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

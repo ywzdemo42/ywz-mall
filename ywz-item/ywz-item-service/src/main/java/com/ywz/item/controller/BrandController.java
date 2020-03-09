@@ -1,6 +1,6 @@
 package com.ywz.item.controller;
 
-import com.ywz.common.PageResult;
+import com.ywz.common.pojo.PageResult;
 import com.ywz.item.pojo.Brand;
 import com.ywz.item.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;

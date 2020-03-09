@@ -2,7 +2,7 @@ package com.ywz.item.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ywz.common.PageResult;
+import com.ywz.common.pojo.PageResult;
 import com.ywz.item.bo.SpuBo;
 import com.ywz.item.mapper.*;
 import com.ywz.item.pojo.*;

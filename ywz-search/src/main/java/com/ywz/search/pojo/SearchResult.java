@@ -1,6 +1,6 @@
 package com.ywz.search.pojo;
 
-import com.ywz.common.PageResult;
+import com.ywz.common.pojo.PageResult;
 import com.ywz.item.pojo.Brand;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ywz.common;
+package com.ywz.common.pojo;
 
 import java.util.List;
 

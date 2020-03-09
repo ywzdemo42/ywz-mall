@@ -1,6 +1,6 @@
 package com.ywz.search.client;
 
-import com.ywz.common.PageResult;
+import com.ywz.common.pojo.PageResult;
 import com.ywz.item.bo.SpuBo;
 import com.ywz.search.pojo.Goods;
 import com.ywz.search.repository.GoodsRepository;

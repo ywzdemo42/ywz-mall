@@ -20,8 +20,8 @@ public class SmsListener {
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "ywz.sms.queue", durable = "true"),
-            exchange = @Exchange(value = "ywz.sms.exchange",ignoreDeclarationExceptions = "true",type = ExchangeTypes.TOPIC),
-            key = {"verifycide_sms"}
+            exchange = @Exchange(value = "YWZ.SMS.EXCHANGE",ignoreDeclarationExceptions = "true",type = ExchangeTypes.TOPIC),
+            key = {"verifycide.sms"}
     ))
     public void  sendSms(Map<String,String> msg){
         if(CollectionUtils.isEmpty(msg)){

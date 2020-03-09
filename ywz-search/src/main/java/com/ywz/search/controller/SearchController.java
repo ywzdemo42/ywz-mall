@@ -1,7 +1,5 @@
 package com.ywz.search.controller;
 
-import com.ywz.common.PageResult;
-import com.ywz.search.pojo.Goods;
 import com.ywz.search.pojo.SearchRequest;
 import com.ywz.search.pojo.SearchResult;
 import com.ywz.search.service.SearchService;
