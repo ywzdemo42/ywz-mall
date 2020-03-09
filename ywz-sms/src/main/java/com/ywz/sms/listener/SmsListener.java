@@ -28,8 +28,8 @@ public class SmsListener {
             return;
         }
 
-        String phone = msg.get("PHONE");
-        String code = msg.get("CODE");
+        String phone = msg.get("phone");
+        String code = msg.get("code");
         if(StringUtils.isNoneBlank(phone) || StringUtils.isNoneBlank(code)){
             this.smsUtils.SendSms(phone,code,smsProperties.getSignName(),smsProperties.getVerifyCodeTemplate());
         }

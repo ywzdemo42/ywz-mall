@@ -54,8 +54,9 @@ public class UserService {
         HashMap<String, String> msg = new HashMap<>();
         msg.put("phone", phone);
         msg.put("code", code);
-        this.amqpTemplate.convertAndSend("YWZ.SMS.EXCHANGE","verifycide.sms",msg);
+        //this.amqpTemplate.convertAndSend("YWZ.SMS.EXCHANGE","verifycide.sms",msg);
         //把验证码保存到redis中
-        this.redisTemplate.opsForValue().set(KEY_PREFIX + phone,code,5, TimeUnit.MILLISECONDS);
+        this.redisTemplate.opsForValue().set(KEY_PREFIX + phone,code,5, TimeUnit.MINUTES);
+        //this.redisTemplate.opsForValue().set("key2", "value2",5, TimeUnit.HOURS);
     }
 }
