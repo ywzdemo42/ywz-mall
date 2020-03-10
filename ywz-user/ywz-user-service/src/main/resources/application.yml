@@ -11,12 +11,7 @@ spring:
   redis:
     host: 47.100.216.155
     #配置redis连接池
-    lettuce:
-      pool:
-        max-idle: 30
-        min-idle: 10
-        max-active: 30
-        max-wait: 10000
+
   rabbitmq:
     host: 47.100.216.155
     username: ywz

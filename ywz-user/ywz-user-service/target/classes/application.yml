@@ -10,6 +10,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     host: 47.100.216.155
+    #配置redis连接池
+
   rabbitmq:
     host: 47.100.216.155
     username: ywz

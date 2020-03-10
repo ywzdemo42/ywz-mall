@@ -1,11 +1,13 @@
 package com.ywz.user.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Table(name = "tb_user")
@@ -14,11 +16,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Length(min = 4,max = 30,message = "用户名必须在4-30位之间")
     private String username;// 用户名
 
+    @Length(min = 8,max = 12,message = "密码必须在8-12位之间")
     @JsonIgnore //对象序列化为json字符串时，忽略该属性
     private String password;// 密码
 
+    /*没有电话的定义 需要自己写正则表达式*/
+    @Pattern(regexp = "^1[35678]\\d{9}$", message = "手机号格式不正确")
     private String phone;// 电话
 
     private Date created;// 创建时间
