@@ -18,6 +18,7 @@
         <module>ywz-goods-web</module>
         <module>ywz-user</module>
         <module>ywz-sms</module>
+        <module>ywz-auth</module>
     </modules>
 
 

@@ -6,22 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ywz-sms" />
-        <module name="ywz-upload" />
-        <module name="ywz-goods-web" />
+        <module name="ywz-registry" />
+        <module name="ywz-auth-common" />
+        <module name="ywz-auth-service" />
+        <module name="ywz-common" />
         <module name="ywz-gateway" />
+        <module name="ywz-user-interface" />
         <module name="ywz-search" />
         <module name="ywz-user-service" />
-        <module name="ywz-common" />
+        <module name="ywz-upload" />
         <module name="ywz-item-interface" />
         <module name="ywz-item-service" />
-        <module name="ywz-registry" />
-        <module name="ywz-user-interface" />
+        <module name="ywz-goods-web" />
+        <module name="ywz-sms" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ywz-auth" options="-parameters" />
+      <module name="ywz-auth-common" options="-parameters" />
+      <module name="ywz-auth-service" options="-parameters" />
       <module name="ywz-common" options="-parameters" />
       <module name="ywz-gateway" options="-parameters" />
       <module name="ywz-goods-web" options="-parameters" />
