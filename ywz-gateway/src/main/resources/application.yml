@@ -17,6 +17,9 @@ zuul:
     item-service: /item/**
     search-service: /search/**
     user-service: /user/**
+    auth-service: /auth/**
+  add-host-header: true #携带地址信息
+  sensitive-headers: #覆盖敏感头信息
 ribbon:
   ConnectTimeout: 10000 #通讯超时时间
   ReadTimeout: 10000 #获取连接超时时间
@@ -27,3 +30,16 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
+ywz:
+  jwt:
+    pubKeyPath: G:\\tmp\\rsa\\rsa.pub #公钥地址
+    cookieName: YWZ_TOKEN #cookie名称
+  filter:
+    allowPaths:
+    # - 开头的路径表示是一个集合  list
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
