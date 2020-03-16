@@ -206,7 +206,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="#" @click.prevent="addCart()" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+										<a href="javascript:void(0);" @click.prevent="addCart()" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
 									</li>
 								</ul>
 							</div>
@@ -665,7 +665,7 @@
 				}).catch(()=>{
 				    // 未登录状态的购物车
 					// 查询已有的购物车
-					const carts = ly.store.get("LY_CART") || [];
+					const carts = ly.store.get("YWZ_CART") || [];
 					// 查看有没有该条记录
 					let cart = carts.find(cart => cart.skuId == this.sku.id);
 					// 判断cart是否为null
@@ -681,7 +681,7 @@
                             ownSpec: this.sku.ownSpec
 						})
 					}
-					ly.store.set("LY_CART", carts);
+					ly.store.set("YWZ_CART", carts);
 
 					// 跳转到购物车页面
 					window.location = "http://www.ywz.com/cart.html";

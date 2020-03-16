@@ -6,7 +6,6 @@ import com.ywz.common.pojo.UserInfo;
 import com.ywz.common.utils.JwtUtils;
 import com.ywz.user.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

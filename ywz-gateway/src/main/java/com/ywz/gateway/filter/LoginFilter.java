@@ -49,6 +49,7 @@ public class LoginFilter extends ZuulFilter {
         String url = request.getRequestURL().toString();
 
         for (String allowPath : allowPaths) {
+            System.err.println("当前请求路径为：" + url + ",对比路口为：" + allowPath);
             if (StringUtils.contains(url, allowPath)) {
                 return false;
             }

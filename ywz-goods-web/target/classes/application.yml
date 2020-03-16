@@ -6,6 +6,13 @@ spring:
     name: goods-web
   thymeleaf:
     cache: false
+  rabbitmq:
+    username: ywz
+    password: ywz
+    host: 47.100.216.155
+    virtual-host: /ywz
+    template:
+      exchange: YWZ.ITEM.EXCHANGE
 
 eureka:
   client:

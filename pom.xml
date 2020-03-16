@@ -19,6 +19,7 @@
         <module>ywz-user</module>
         <module>ywz-sms</module>
         <module>ywz-auth</module>
+        <module>ywz-cart</module>
     </modules>
 
 

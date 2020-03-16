@@ -9,6 +9,13 @@ spring:
       cluster-nodes: 47.100.216.155:9300
   jackson:
     default-property-inclusion: non_null
+  rabbitmq:
+    username: ywz
+    password: ywz
+    host: 47.100.216.155
+    virtual-host: /ywz
+    template:
+      exchange: YWZ.ITEM.EXCHANGE
 eureka:
   client:
     service-url:
