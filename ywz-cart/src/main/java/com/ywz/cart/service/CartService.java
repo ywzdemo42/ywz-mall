@@ -70,13 +70,21 @@ public class CartService {
         return cartsJson.stream().map(obj -> {
             return JsonUtils.parse(obj.toString(),Cart.class);
         }).collect(Collectors.toList());
-
-
-
     }
 
     public void updateCarts(Cart cart) {
+        UserInfo userInfo = LoginInterceptor.getUserInfo();
+        BoundHashOperations<String, Object, Object> hashOperations = this.redisTemplate.boundHashOps(KEY_PREFIX + userInfo.getId());
+        String cartJson = hashOperations.get(cart.getSkuId().toString()).toString();
+        Cart cart1 = JsonUtils.parse(cartJson, Cart.class);
+        cart1.setNum(cart.getNum());
+        hashOperations.put(cart.getSkuId().toString(),JsonUtils.serialize(cart1));
+    }
 
 
+    public void deleteCart(String skuId) {
+        UserInfo userInfo = LoginInterceptor.getUserInfo();
+        BoundHashOperations<String, Object, Object> hashOperations = this.redisTemplate.boundHashOps(KEY_PREFIX + userInfo.getId());
+        hashOperations.delete(skuId);
     }
 }

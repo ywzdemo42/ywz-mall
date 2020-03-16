@@ -8,10 +8,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,5 +36,11 @@ public class CartController {
     public ResponseEntity<Void> updateNum(@RequestBody Cart cart){
         this.cartService.updateCarts(cart);
         return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("{skuId}")
+    public ResponseEntity<Void> deleteCart(@PathVariable("skuId") String skuId) {
+        this.cartService.deleteCart(skuId);
+        return ResponseEntity.ok().build();
     }
 }
