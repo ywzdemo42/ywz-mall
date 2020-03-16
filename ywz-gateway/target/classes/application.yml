@@ -19,6 +19,7 @@ zuul:
     user-service: /user/**
     auth-service: /auth/**
     cart-service: /cart/**
+
   add-host-header: true #携带地址信息
   sensitive-headers: #覆盖敏感头信息
 ribbon:

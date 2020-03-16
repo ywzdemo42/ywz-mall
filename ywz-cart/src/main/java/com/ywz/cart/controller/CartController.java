@@ -23,8 +23,17 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    //查询购物车 上线后合并
     @GetMapping
     public ResponseEntity<List<Cart>> queryCart(){
+        //查询是否上线
+
+
+
+
+        //合并离线购物车
+
+
         List<Cart> carts =  this.cartService.queryCart();
         if(CollectionUtils.isEmpty(carts)){
             return ResponseEntity.notFound().build();

@@ -14,7 +14,7 @@ eureka:
 ywz:
   jwt:
     secret: Ywz@408083094Yd1620116201&salt # 登入校验的密钥
-    pubKeyPath: G:\\tmp\\rsa\\rsa.pub #公钥地址
-    priKeyPath: G:\\tmp\\rsa\\rsa.pri #私钥地址
+    pubKeyPath: D:\\tmp\\rsa\\rsa.pub #公钥地址
+    priKeyPath: D:\\tmp\\rsa\\rsa.pri #私钥地址
     expire: 30 #过期时间
     cookieName: YWZ_TOKEN #cookie名称

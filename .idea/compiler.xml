@@ -6,16 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ywz-cart" />
+        <module name="ywz-user-interface" />
+        <module name="ywz-order" />
         <module name="ywz-gateway" />
         <module name="ywz-item-service" />
         <module name="ywz-user-service" />
         <module name="ywz-common" />
-        <module name="ywz-search" />
         <module name="ywz-upload" />
         <module name="ywz-item-interface" />
-        <module name="ywz-user-interface" />
+        <module name="ywz-search" />
         <module name="ywz-registry" />
+        <module name="ywz-cart" />
         <module name="ywz-auth-service" />
         <module name="ywz-auth-common" />
         <module name="ywz-sms" />
@@ -36,6 +37,7 @@
       <module name="ywz-item-interface" options="-parameters" />
       <module name="ywz-item-service" options="-parameters" />
       <module name="ywz-mall" options="-parameters" />
+      <module name="ywz-order" options="-parameters" />
       <module name="ywz-registry" options="-parameters" />
       <module name="ywz-search" options="-parameters" />
       <module name="ywz-sms" options="-parameters" />

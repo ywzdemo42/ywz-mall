@@ -54,6 +54,12 @@ public class CartService {
 
     public List<Cart> queryCart() {
         UserInfo userInfo = LoginInterceptor.getUserInfo();
+
+
+
+
+
+
         //判断用户是否有购物车
         if(this.redisTemplate.hasKey(KEY_PREFIX + userInfo.getId())){
             return null;

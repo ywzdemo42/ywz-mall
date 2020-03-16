@@ -20,6 +20,7 @@
         <module>ywz-sms</module>
         <module>ywz-auth</module>
         <module>ywz-cart</module>
+        <module>ywz-order</module>
     </modules>
 
 
