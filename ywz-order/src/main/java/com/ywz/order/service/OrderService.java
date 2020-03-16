@@ -2,8 +2,8 @@ package com.ywz.order.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.ywz.auth.entity.UserInfo;
 import com.ywz.common.pojo.PageResult;
+import com.ywz.common.pojo.UserInfo;
 import com.ywz.common.utils.IdWorker;
 import com.ywz.order.interceptor.LoginInterceptor;
 import com.ywz.order.mapper.OrderDetailMapper;
