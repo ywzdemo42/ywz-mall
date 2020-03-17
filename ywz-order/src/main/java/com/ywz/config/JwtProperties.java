@@ -1,6 +1,7 @@
 package com.ywz.config;
 
-import com.ywz.auth.utils.RsaUtils;
+
+import com.ywz.common.utils.RsaUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;

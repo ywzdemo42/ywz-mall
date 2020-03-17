@@ -2,6 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-auth" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-auth/ywz-auth-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-auth/ywz-auth-common/src/main/java" charset="UTF-8" />
@@ -15,6 +17,8 @@
     <file url="file://$PROJECT_DIR$/ywz-goods-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-goods-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-item" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-item/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-item/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-item/ywz-item-interface" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-item/ywz-item-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-item/ywz-item-service" charset="UTF-8" />
@@ -30,6 +34,8 @@
     <file url="file://$PROJECT_DIR$/ywz-upload" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-upload/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ywz-user/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-user/ywz-user-interface" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-user/ywz-user-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ywz-user/ywz-user-service" charset="UTF-8" />
